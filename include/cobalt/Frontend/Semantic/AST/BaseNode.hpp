@@ -1,45 +1,14 @@
 #ifndef COBALT_FRONTEND_SEMANTIC_AST_BASENODE_HPP_
 #define COBALT_FRONTEND_SEMANTIC_AST_BASENODE_HPP_
 
-
 #include <ostream>
 #include <vector>
 
 namespace Cobalt::AST {
 
 typedef enum {
-    NK_ASTRoot,
-
-    NK_Type,
-    NK_SimpleType,
-    NK_FuncType,
-    NK_ComplexType,
-    NK_END_Type,
-
-    NK_StructDef,
-    NK_AliasDef,
-
-    NK_Expr,
-    NK_Assign,
-    NK_BinaryOp,
-    NK_UnaryOp,
-    NK_Cast,
-    NK_Condition,
-    NK_ConstExpr,
-    NK_FuncCall,
-    NK_END_Expr,
-
-    NK_Stmt,
-    NK_If,
-    NK_While,
-    NK_For,
-    NK_Return,
-    NK_Break,
-    NK_Continue,
-    NK_Block,
-    NK_VariableDef,
-    NK_FuncDef,
-    NK_END_Stmt
+#define REG_NODE(x) NK_##x,
+#include "ASTNodeList.inc"
 } NodeKind;
 
 typedef enum {
@@ -75,42 +44,26 @@ struct BaseNode {
     virtual ~BaseNode();
 };
 
-struct ASTRootNode : public BaseNode {
-    [[nodiscard]] NodeKind kind() const override { return NK_ASTRoot; };
-    std::vector<BaseNode*> children;
-    ~ASTRootNode() override
+template <typename NodeType>
+struct ASTVisitable : public BaseNode {
+    template <typename TravellerType>
+    void visit(TravellerType* t)
     {
-        for (auto ptr : children)
-            delete ptr;
+        static_cast<NodeType*>(this)->beforeVisit(t);
+        static_cast<NodeType*>(this)->visitNext(t);
+        static_cast<NodeType*>(this)->afterVisit(t);
     }
+    template <typename TravellerType>
+    void beforeVisit(TravellerType*) { }
+    template <typename TravellerType>
+    void visitNext(TravellerType*) { }
+    template <typename TravellerType>
+    void afterVisit(TravellerType*) { }
 };
 
-struct TypeNode;
-struct SimpleTypeNode;
-struct FuncTypeNode;
-struct ComplexTypeNode;
+#define REG_NODE(x) struct x##Node;
+#include "ASTNodeList.inc"
 
-struct StructDefNode;
-struct AliasDefNode;
-
-struct ExprNode;
-struct AssignNode;
-struct BinaryOpNode;
-struct UnaryOpNode;
-struct CaseNode;
-struct ConditionNode;
-struct FuncCallNode;
-
-struct StmtNode;
-struct IfNode;
-struct WhileNode;
-struct ForNode;
-struct ReturnNode;
-struct BreakNode;
-struct ContinueNode;
-struct BlockNode;
-struct VariableDefNode;
-struct FuncDefNode;
 }
 
 #endif

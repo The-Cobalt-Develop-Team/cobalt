@@ -95,6 +95,11 @@ struct FuncDefNode : public StmtNode {
     const std::string name;
     std::vector<std::pair<std::string, TypeNode*>> params;
 };
+
+struct StructDefNode : public StmtNode { };
+
+struct AliasDefNode : public StmtNode { };
+
 }
 
 #endif

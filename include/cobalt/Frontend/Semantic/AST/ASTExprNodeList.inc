@@ -1,0 +1,12 @@
+#ifndef REG_EXPR_NODE
+#define REG_EXPR_NODE(x) REG_NODE(x)
+#endif
+REG_EXPR_NODE(Expr)
+REG_EXPR_NODE(Assign)
+REG_EXPR_NODE(BinaryOp)
+REG_EXPR_NODE(UnaryOp)
+REG_EXPR_NODE(Cast)
+REG_EXPR_NODE(Condition)
+REG_EXPR_NODE(ConstExpr)
+REG_EXPR_NODE(FuncCall)
+#undef REG_EXPR_NODE
