@@ -44,23 +44,6 @@ struct BaseNode {
     virtual ~BaseNode();
 };
 
-template <typename NodeType>
-struct ASTVisitable : public BaseNode {
-    template <typename TravellerType>
-    void visit(TravellerType* t)
-    {
-        static_cast<NodeType*>(this)->beforeVisit(t);
-        static_cast<NodeType*>(this)->visitNext(t);
-        static_cast<NodeType*>(this)->afterVisit(t);
-    }
-    template <typename TravellerType>
-    void beforeVisit(TravellerType*) { }
-    template <typename TravellerType>
-    void visitNext(TravellerType*) { }
-    template <typename TravellerType>
-    void afterVisit(TravellerType*) { }
-};
-
 #define REG_NODE(x) struct x##Node;
 #include "ASTNodeList.inc"
 

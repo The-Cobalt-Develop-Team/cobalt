@@ -5,7 +5,7 @@
 #include <ostream>
 
 namespace Cobalt::AST {
-struct ASTRootNode : public ASTVisitable<ASTRootNode> {
+struct ASTRootNode : public BaseNode{
     [[nodiscard]] NodeKind kind() const override { return NK_ASTRoot; };
     void dump(std::ostream&) const override;
     std::vector<BaseNode*> children;
