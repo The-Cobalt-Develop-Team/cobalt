@@ -1,0 +1,47 @@
+List of maintainers
+===================
+
+Descriptions
+------------
+
+    M: *Mail* patches to: FullName <address@domain>
+    S: *Status*, one of the following:
+	   Supported:	Someone is actually paid to look after this.
+	   Maintained:	Someone actually looks after it.
+	   Odd Fixes:	It has a maintainer but they don't have time to do
+			much other than throw the odd patch in. See below..
+	   Orphan:	No current maintainer [but maybe you could take the
+			role as you write your new code].
+	   Obsolete:	Old code. Something tagged obsolete generally means
+			it has been replaced by a better system and you
+			should be using that.
+    F: *Files* and directories wildcard patterns.
+	   A trailing slash includes all files and subdirectory files.
+	   F:	drivers/net/	all files in and below drivers/net
+	   F:	drivers/net/*	all files in drivers/net, but not below
+	   F:	*/net/*		all files in "any top level directory"/net
+	   One pattern per line.  Multiple F: lines acceptable.
+
+Maintainers List
+----------------
+
+Lexer
+M:      Andy Shen <andyshen2006@outlook.com>
+L:      cobalt@andyshen2006.top
+S:      Maintained
+F:      src/Frontend/Lexer/
+F:      include/cobalt/Frontend/Lexer/
+
+Parser
+M:      Andy Shen <andyshen2006@outlook.com>
+L:      cobalt@andyshen2006.top
+S:      Maintained
+F:      src/Frontend/Parser/
+F:      include/cobalt/Frontend/Parser/
+
+Semantic Analyzer
+M:      Renatus Madrigal <listener1381@outlook.com>
+L:      cobalt@andyshen2006.top
+S:      Maintained
+F:      src/Frontend/Semantic/
+F:      include/cobalt/Frontend/Semantic/
