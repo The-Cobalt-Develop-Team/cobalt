@@ -15,7 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-#include "errormsg.h"
+#include "Frontend/Lexer/errormsg.h"
 
 int EM_tokpos = 0;
 
